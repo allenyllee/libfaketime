@@ -66,6 +66,7 @@ CFLAGS += -std=gnu99 -Wall -Wextra -Werror -Wno-nonnull-compare -DFAKE_STAT -DFA
 ifeq ($(PLATFORM),SunOS)
 CFLAGS += -D__EXTENSIONS__ -D_XOPEN_SOURCE=600
 endif
+CFLAGS += -m32 #build 32bit binary
 
 LIB_LDFLAGS += -shared
 
@@ -73,6 +74,8 @@ LDFLAGS += -lpthread
 ifneq ($(PLATFORM),SunOS)
 LDFLAGS += -Wl,--version-script=libfaketime.map
 endif
+LDFLAGS += -m32 #build 32bit binary
+
 
 LDADD += -ldl -lm -lrt
 BIN_LDFLAGS += -lrt
